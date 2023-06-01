@@ -1,0 +1,30 @@
+.nav button {
+  background-color: blue;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: white;
+}
+
+.ItemContainer {
+  width: 80%;
+  margin: auto;
+}
+.item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-size: 24px;
+}
+.item > input {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.item input:checked ~ .checkmark {
+  background-color: #8af321;
+}
