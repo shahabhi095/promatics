@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import TodoList from './Components/TodoList';
+import TodoList from "./Components/TodoList";
 import { useEffect, useState } from 'react';
 
 
 function App() {
   const [addTask, setAddTask] = useState({ task: "", isCompleted: false });
   const [tastItem, setTaskItem] = useState([])
-  const [NotCompleted, setNotCompleted] = useState(0)
+  const [Completed, setCompleted] = useState(0)
 const HandleChange=(e)=>{
 setAddTask({...addTask, task:e.target.value})
 }
@@ -15,14 +15,22 @@ setAddTask({...addTask, task:e.target.value})
 const HandleAddTask=()=>{
   setTaskItem([...tastItem, addTask]);
   setAddTask({ task: "", isCompleted: false });
-  setNotCompleted(NotCompleted+1)
 }
 console.log(tastItem);
-useEffect(() => {}, [tastItem]);
+useEffect(() => {
+  let count = 0
+  tastItem.forEach((el)=>{
+    if(el.isCompleted===true){
+      count++
+    }
+  });
+  setCompleted(count);
+
+}, [tastItem]);
 
 const HandleUpdate=(val,id)=>{
   if(val){
-// setNotCompleted( NotCompleted - 1);
+
   }
   let data = tastItem.map((el,i)=>{
     if(i===id){
@@ -53,20 +61,15 @@ setTaskItem(data);
      </div>
      <div>
        <h1>Total Task:{tastItem.length}</h1>
-       {/* <h1>Completed Task:{tastItem.length - NotCompleted}</h1>
-       <h1>Pending Task:{NotCompleted}</h1> */}
+       <h1>Completed Task:{Completed}</h1>
      </div>
      <div>
-       {tastItem &&
-         tastItem.map((el, i) => (
-           <TodoList
-             key={i}
-             HandleDelete={HandleDelete}
-             HandleUpdate={HandleUpdate}
-             item={el}
-             id={i}
-           />
-         ))}
+       <TodoList
+         tastItem={tastItem}
+         HandleDelete={HandleDelete}
+         HandleUpdate={HandleUpdate}
+       />
+      
      </div>
    </>
  );

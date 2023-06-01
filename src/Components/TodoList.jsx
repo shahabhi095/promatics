@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
+import React from "react";
+import TodoItem from "./TodoItem";
 
-const TodoList = ({ item, id, HandleUpdate, HandleDelete }) => {
-  const { task, isCompleted } = item;
-  const [update, setUpdate] = useState(isCompleted)
-  const HandleStatus=()=>{
-    setUpdate(!update);
-    HandleUpdate(update, id);
-  }
-  console.log(update)
+const TodoList = ({ tastItem, HandleDelete, HandleUpdate }) => {
+    console.log(tastItem);
   return (
-    <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
-      <input type="checkbox" checked={update===true?true:false} onChange={HandleStatus}/>
-      <h4>{task}</h4>
-      <p style={{color: isCompleted===true?"green":"red"}}>{isCompleted === true ? "Completed" : "Pending"}</p>
-      <button onClick={() => HandleDelete(id)}>Delete</button>
+    <div>
+      {tastItem &&
+        tastItem.map((el, i) => (
+          <TodoItem
+            key={i}
+            item={el}
+            id={i}
+            HandleDelete={HandleDelete}
+            HandleUpdate={HandleUpdate}
+          />
+        ))}
     </div>
   );
 };
 
-export default TodoList
+export default TodoList;
