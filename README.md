@@ -10,3 +10,5 @@
 - This component show an individual task on which you have clicked in TodoList page
 - Here I have shown a checkbox for changing ths status (pending || completed) with visual effect 
 - It will show task details and status
+
+Deployed link : https://promotics-todo.vercel.app/
